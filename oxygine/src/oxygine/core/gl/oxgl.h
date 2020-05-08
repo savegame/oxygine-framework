@@ -76,7 +76,7 @@ extern "C"
 #   define GL_GLEXT_PROTOTYPES
 #   include "GLES2/gl2ext.h"
 
-#elif __SAILFISHOS__
+#elif TARGET_OS_SAILFISH
 #   include "GLES2/gl2.h"
 #   define GL_GLEXT_PROTOTYPES
 #   include "GLES2/gl2ext.h"

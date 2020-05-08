@@ -15,7 +15,7 @@
 #endif
 
 
-#if defined(__ANDROID__) || defined(__SAILFISHOS__)
+#if defined(__ANDROID__) || defined(TARGET_OS_SAILFISH)
 #include "GLES2/gl2.h"
 #endif
 

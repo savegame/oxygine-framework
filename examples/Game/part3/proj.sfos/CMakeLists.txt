@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (GamePart3)
 
-add_definitions( -D__SAILFISHOS__=1 )
+add_definitions( -DTARGET_OS_SAILFISH=1 )
 add_subdirectory(../../../../ oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
