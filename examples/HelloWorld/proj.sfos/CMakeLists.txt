@@ -1,13 +1,14 @@
 cmake_minimum_required (VERSION 2.6)
 project (HelloWorld)
 
+set(TARGET_OS_SAILFISH 1)
 add_definitions( -DTARGET_OS_SAILFISH=1 )
 add_subdirectory(../../../ oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
 link_directories(${OXYGINE_LIBRARY_DIRS})
 
-set(CMAKE_CXX_FLAGS "-lGLESv2 ${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 
 add_executable(HelloWorld ../src/example.cpp ../src/main.cpp  ../src/example.h )
 target_link_libraries(HelloWorld ${OXYGINE_CORE_LIBS})

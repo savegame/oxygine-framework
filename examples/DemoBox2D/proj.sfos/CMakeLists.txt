@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (DemoBox2D)
 
+set(TARGET_OS_SAILFISH 1)
 add_definitions( -DTARGET_OS_SAILFISH=1 )
 add_subdirectory(../../../ oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
@@ -11,7 +12,7 @@ file(GLOB_RECURSE BOX2DSRC
 		../box2d/*.cpp
 		../box2d/*.h)
 
-set(CMAKE_CXX_FLAGS "-lGLESv2 ${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 
 add_executable(DemoBox2D ${BOX2DSRC} ../src/Box2DDebugDraw.cpp ../src/main.cpp ../src/example.cpp  ../src/Box2DDebugDraw.h ../src/example.h )
 source_group(box2d FILES ${BOX2DSRC})
