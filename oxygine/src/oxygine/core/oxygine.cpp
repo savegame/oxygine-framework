@@ -291,10 +291,15 @@ namespace oxygine
             flags |= SDL_WINDOW_SHOWN;
             flags |= SDL_WINDOW_BORDERLESS;
             flags |= SDL_WINDOW_ALLOW_HIGHDPI;
-#elif __ANDROID__
+#elif __ANDROID__ || defined(TARGET_OS_SAILFISH)
             flags |= SDL_WINDOW_RESIZABLE;//fix for latest SDL, related with new setOrientationBis java function
             flags |= SDL_WINDOW_FULLSCREEN;
             flags |= SDL_WINDOW_BORDERLESS;
+# ifdef TARGET_OS_SAILFISH
+            flags |= SDL_WINDOW_ALLOW_HIGHDPI;
+# else 
+            flags |= SDL_WINDOW_RESIZABLE;
+# endif
 #else
             if (desc.show_window)
                 flags |= SDL_WINDOW_SHOWN;
@@ -332,7 +337,7 @@ namespace oxygine
             //flags &= ~SDL_WINDOW_FULLSCREEN;
 #endif
 
-#if TARGET_OS_IPHONE || defined(__ANDROID__) ||  defined(TARGET_OS_SAILFISH)
+#if TARGET_OS_IPHONE || defined(__ANDROID__)
             desc.w = -1;
             desc.h = -1;
 #endif
