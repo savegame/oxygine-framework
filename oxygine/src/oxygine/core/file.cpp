@@ -54,7 +54,7 @@ namespace oxygine
             logs::messageln("external %s", SDL_AndroidGetExternalStoragePath());
             _nfsWrite.setPath(SDL_AndroidGetInternalStoragePath());
 #elif OXYGINE_EDITOR
-#elif __APPLE__
+#elif __APPLE__ && !defined (TARGET_OS_MAC)
             _nfsWrite.setPath(getSupportFolder().c_str());
 #else
             if (company && app && *company && *app)

@@ -116,10 +116,18 @@ if (EMSCRIPTEN)
 endif(EMSCRIPTEN)
 
 foreach(ITEM ${FOLDERS})
-	file(GLOB FLS
-		${OXYGINE_ROOT}/src/${ITEM}/*.cpp
-		${OXYGINE_ROOT}/src/${ITEM}/*.c
-		${OXYGINE_ROOT}/src/${ITEM}/*.h)
+	if(TARGET_SO_MAC)
+		file(GLOB FLS
+			${OXYGINE_ROOT}/src/${ITEM}/*.mm
+			${OXYGINE_ROOT}/src/${ITEM}/*.cpp
+			${OXYGINE_ROOT}/src/${ITEM}/*.c
+			${OXYGINE_ROOT}/src/${ITEM}/*.h)
+	else()
+		file(GLOB FLS
+			${OXYGINE_ROOT}/src/${ITEM}/*.cpp
+			${OXYGINE_ROOT}/src/${ITEM}/*.c
+			${OXYGINE_ROOT}/src/${ITEM}/*.h)
+	endif()
 	set(SOURCES ${SOURCES} ${FLS})	
 	string(REPLACE / \\ SGROUP ${ITEM})
 	source_group(${SGROUP} FILES ${FLS})
@@ -160,12 +168,18 @@ set(CORE_LIBS
 
 if (OX_USE_SDL2)
 	if (TARGET_OS_SAILFISH)
+		message(Target OS is Sailfish)
 		set(CORE_LIBS ${CORE_LIBS}
 			SDL2 GLESv2)
+	elseif(TARGET_OS_MAC)
+		set(CORE_LIBS ${CORE_LIBS}
+			SDL2 png jpeg)
+		set(OXYGINE_LIBRARY_DIRS ${OXYGINE_LIBRARY_DIRS} /usr/local/lib)
+		set(OXYGINE_INCLUDE_DIRS ${OXYGINE_INCLUDE_DIRS} /usr/local/include)
 	else()
 		set(CORE_LIBS ${CORE_LIBS}
 			SDL2main SDL2)
-	endif(TARGET_OS_SAILFISH)
+	endif()
 	set(OXYGINE_INCLUDE_DIRS ${OXYGINE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
 endif(OX_USE_SDL2)	
 

@@ -22,6 +22,7 @@ namespace oxygine
         static void setCorner(int corner);
         static void addDebugString(const char* format, ...);
         static std::string getDefaultName() { return "debug_actor"; }
+        void setFontSize(int size);
 
         DebugActor();
         ~DebugActor();
@@ -30,7 +31,6 @@ namespace oxygine
         /**function for debug. Helps you to find actor who handled TouchEvent*/
         void showTouchedActor(bool show);
         void showTexel2PixelErrors(bool show);
-
     protected:
         void onAdded2Stage() override;
         void onRemovedFromStage() override;

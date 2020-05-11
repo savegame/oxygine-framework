@@ -421,6 +421,12 @@ namespace oxygine
 #endif
     }
 
+    void DebugActor::setFontSize(int size)
+    {
+        if(_text)
+            _text->setFontSize(size);
+    }
+
     void DebugActor::showTouchedActor(bool show)
     {
         _getStage()->removeEventListener(TouchEvent::TOUCH_DOWN, CLOSURE(this, &DebugActor::onEvent));
